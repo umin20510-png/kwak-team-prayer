@@ -465,7 +465,7 @@ function renderPray(){
       return p==='public'||p==='모임에서 공개'||p==='';
     });
   }
-  if(prayMode==='answered') rows=rows.filter(function(r){return r.c5==='Y';});
+  rows=prayMode==='active'?rows.filter(function(r){return r.c5!=='Y';}):rows.filter(function(r){return r.c5==='Y';});
   visiblePray=rows.slice().reverse();
   $('prayCount').textContent=visiblePray.length+'개의 기도제목';
   if(!visiblePray.length){
@@ -491,7 +491,7 @@ function renderPray(){
             '</div>'+
             '<div style="display:flex;align-items:center;gap:6px">'+
               '<span class="pi-date">'+fmtDate(p.c0)+'</span>'+
-              (!answered?'<button class="ans-btn" onclick="askAnswered('+p.rowIndex+',\''+p.c2.slice(0,20).replace(/'/g,"\\'")+'\')">응답됐어요</button>':'')+
+              (!answered?'<button class="ans-btn" onclick="askAnswered('+p.rowIndex+',\''+p.c2.slice(0,20).replace(/'/g,"\\'")+'\')">응답됐어요</button>':'<button class="ans-btn done" onclick="unAnswer('+p.rowIndex+')">응답 해제</button>')+
             '</div>'+
           '</div>'+
           '<p class="pi-text">'+String(p.c2||'').replace(/</g,'&lt;')+'</p>'+
@@ -534,6 +534,15 @@ $('btnDelPray').addEventListener('click',function(){
   $('mDelete').classList.add('open');
 });
 
+function unAnswer(rowIndex){
+  var s=document.createElement('script');
+  s.src=SHEET_URL+'?action=answer&rowIndex='+rowIndex+'&sheet=기도제목&value=N&callback=__unAnsCb&t='+Date.now();
+  document.head.appendChild(s);
+  window.__unAnsCb=function(){
+    allPray.forEach(function(r){if(r.rowIndex===rowIndex) r.c5='N';});
+    renderPray();
+  };
+}
 function askAnswered(rowIndex,txt){
   pendingAns=rowIndex;
   $('mAnsMsg').textContent='"'+txt+(txt.length>20?'...':'')+'" — 응답됨으로 표시할까요?';
@@ -545,7 +554,7 @@ $('btnAnsYes').addEventListener('click',function(){
   if(!pendingAns)return;
   var idx=pendingAns;pendingAns=null;
   var s=document.createElement('script');
-  s.src=SHEET_URL+'?action=answer&rowIndex='+idx+'&sheet=기도제목&callback=__ansCb&t='+Date.now();
+  s.src=SHEET_URL+'?action=answer&rowIndex='+idx+'&sheet=기도제목&value=Y&callback=__ansCb&t='+Date.now();
   document.head.appendChild(s);
   window.__ansCb=function(){
     allPray.forEach(function(r){if(r.rowIndex===idx)r.c5='Y';});
