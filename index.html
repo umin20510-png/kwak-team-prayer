@@ -186,6 +186,7 @@ textarea.lg{height:130px}
       <div class="fam-chip" data-name="박서현">박서현</div>
       <div class="fam-chip" data-name="김서현">김서현</div>
       <div class="fam-chip" data-name="김한을">김한을</div>
+      <div class="fam-chip" data-name="신미정">신미정</div>
       <div class="fam-chip" data-name="이규환">이규환</div>
       <div class="fam-chip" data-name="이은휼">이은휼</div>
       <div class="fam-chip" data-name="조안나">조안나</div>
@@ -382,8 +383,8 @@ function fmtDate(str){
   return s.slice(0,10).replace(/-/g,'.');
 }
 function avatarColor(name){
-  var colors=['#8B7355','#4A7C59','#4A6FA5','#C49A3C','#854F0B','#B91C1C','#0F6E56','#4A3F8F'];
-  var idx={'곽유민':0,'박서현':1,'김서현':2,'김한을':3,'이규환':4,'이은휼':5,'조안나':6,'최유진':7}[name]||0;
+  var colors=['#8B7355','#4A7C59','#4A6FA5','#C49A3C','#854F0B','#B91C1C','#0F6E56','#4A3F8F','#2E7D9A'];
+  var idx={'곽유민':0,'박서현':1,'김서현':2,'김한을':3,'신미정':4,'이규환':5,'이은휼':6,'조안나':7,'최유진':8}[name]||0;
   return colors[idx];
 }
 function postData(payload,onDone){
