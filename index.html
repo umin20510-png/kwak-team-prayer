@@ -8,14 +8,14 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --cream:#FAF7F2;--warm:#F2EDE4;--stone:#E8E0D4;--bark:#8B7355;--soil:#5C4A32;
-  --leaf:#4A7C59;--leaf-light:#E8F2EB;--sky:#4A6FA5;--sky-light:#E8EEF6;
-  --gold:#C49A3C;--gold-light:#FDF5E0;--amber:#854F0B;--amber-light:#FAEEDA;
-  --text:#2C2419;--muted:#9A8B78;--border:#DDD5C8;--red:#B91C1C;--red-light:#FEE2E2;
+  --cream:#E8F8F5;--warm:#D0F0EB;--stone:#9ECDC6;--bark:#0E7490;--soil:#0E4D60;
+  --leaf:#047857;--leaf-light:#D1FAE5;--sky:#0284C7;--sky-light:#E0F2FE;
+  --gold:#0E7490;--gold-light:#CCFBF1;--amber:#854F0B;--amber-light:#FAEEDA;
+  --text:#0C4A6E;--muted:#5E9EA8;--border:#A7D8D2;--red:#B91C1C;--red-light:#FEE2E2;
   --r:16px;--rs:10px;
 }
 html,body{background:var(--cream);font-family:'Noto Sans KR',sans-serif;color:var(--text);min-height:100vh;-webkit-text-size-adjust:100%}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(196,154,60,.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(74,124,89,.06) 0%,transparent 50%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(14,116,144,.07) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(4,120,87,.07) 0%,transparent 50%);pointer-events:none;z-index:0}
 
 .wrap{max-width:480px;margin:0 auto;padding:0 16px 100px;position:relative;z-index:1}
 .hd{text-align:center;padding:44px 0 32px}
@@ -383,7 +383,7 @@ function fmtDate(str){
   return s.slice(0,10).replace(/-/g,'.');
 }
 function avatarColor(name){
-  var colors=['#8B7355','#4A7C59','#4A6FA5','#C49A3C','#854F0B','#B91C1C','#0F6E56','#4A3F8F','#2E7D9A'];
+  var colors=['#0E4D60','#047857','#0284C7','#0E7490','#6D28D9','#B91C1C','#065F46','#1D4ED8','#854F0B'];
   var idx={'곽유민':0,'박서현':1,'김서현':2,'김한을':3,'신미정':4,'이규환':5,'이은휼':6,'조안나':7,'최유진':8}[name]||0;
   return colors[idx];
 }
